@@ -85,9 +85,9 @@ function toggleTableGrid(viewMode) {
 function renderPagesBtns() {
     var strHTMLs = ``
     const pagesLength = getPagesLength()
-
+    const currPage = getCurrPage()
     for (let i = 0; i < pagesLength; i++) {
-        const pageBtn = `<button data-page="${i}" class="page-idx-btn ${i===0?'active':''}" onclick="onChangePage(this.innerText - 1)" >${i+1}</button>`
+        const pageBtn = `<button data-page="${i}" class="page-idx-btn ${i===currPage?'active':''}" onclick="onChangePage(this.innerText - 1)" >${i+1}</button>`
         strHTMLs += pageBtn
     }
     const elPagesIdxButtonsWrapper = document.querySelector('.idx-btns')

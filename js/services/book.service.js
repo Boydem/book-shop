@@ -26,7 +26,6 @@ function setBooksViewMode(viewMode) {
 }
 
 function getBooksViewMode() {
-    console.log('gViewMode:', gViewMode)
     return gViewMode
 }
 
@@ -68,6 +67,7 @@ function readBook(bookId) {
 
 function addBook(name, price) {
     if (!name || !price) return
+    if (price === NaN) return
     gBooks.push(_createBook(name, price))
     _saveBooksToStorage()
 }
@@ -145,6 +145,10 @@ function prevPage() {
     if (gPageIdx * PAGE_SIZE < 0) {
         gPageIdx = Math.floor(gBooks.length / PAGE_SIZE) - 1
     }
+    return gPageIdx
+}
+
+function getCurrPage() {
     return gPageIdx
 }
 
