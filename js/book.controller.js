@@ -10,25 +10,76 @@ function onInit() {
     if (currQueryParams.onRead) onReadBook(currQueryParams.id)
 }
 
+function setViewMode(viewMode) {
+    if (viewMode === 'list') setBooksViewMode('list')
+    else if (viewMode === 'grid') setBooksViewMode('grid')
+    renderBooks()
+}
+
+function getStrHTML(viewMode = 'list', book) {
+    if (viewMode === 'list') {
+        return `<tr>
+        <td class="book-id">${book.id}</td>
+        <td class="book-img-td">
+            <img src="imgs/${book.imgUrl}" class="book-img" alt="">
+        </td>
+        <td class="book-title">${book.name}</td>
+        <td class="book-price">$${book.price}</td>
+        <td class="book-actions">
+            <button onclick="onReadBook('${book.id}')" class="read-btn btn">Read</button>
+            <button onclick="onUpdateBook('${book.id}')" class="update-btn btn">Update</button>
+            <button onclick="onRemoveBook('${book.id}')" class="delete-btn btn">Delete</button>
+        </td>
+    </tr>`
+    } else {
+        return `<div class="grid-item">
+        <div class="book-img-td">
+            <img src="imgs/${book.imgUrl}" class="book-img" alt="">
+        </div>
+        <div class="book-grid-content">
+        <p>ID: ${book.id}</p>
+        <h3>Title: ${book.name}</h3>
+        <p>Price: $${book.price}</p>
+        <div class="actions-btns-grid">
+            <button onclick="onReadBook('${book.id}')" class="read-btn btn">Read</button>
+            <button onclick="onUpdateBook('${book.id}')" class="update-btn btn">Update</button>
+            <button onclick="onRemoveBook('${book.id}')" class="delete-btn btn">Delete</button>
+        </div>
+        </div>
+    </div>`
+    }
+}
+
 function renderBooks() {
     var books = getBooksToDisplay()
+    var viewMode = getBooksViewMode()
     const strHTMLs = books.map(book =>
-        `<tr>
-            <td class="book-id">${book.id}</td>
-            <td class="book-img-td">
-                <img src="imgs/${book.imgUrl}" class="book-img" alt="">
-            </td>
-            <td class="book-title">${book.name}</td>
-            <td class="book-price">$${book.price}</td>
-            <td class="book-actions">
-                <button onclick="onReadBook('${book.id}')" class="read-btn btn">Read</button>
-                <button onclick="onUpdateBook('${book.id}')" class="update-btn btn">Update</button>
-                <button onclick="onRemoveBook('${book.id}')" class="delete-btn btn">Delete</button>
-            </td>
-        </tr>`
+        getStrHTML(viewMode, book)
     )
-    const elTableBody = document.querySelector('tbody')
-    elTableBody.innerHTML = strHTMLs.join('')
+    if (viewMode === 'list') {
+        var elBooksContainer = document.querySelector('tbody')
+        toggleTableGrid('list')
+    } else if (viewMode === 'grid') {
+        var elBooksContainer = document.querySelector('.books-grid')
+        toggleTableGrid('grid')
+    }
+    elBooksContainer.innerHTML = strHTMLs.join('')
+}
+
+function toggleTableGrid(viewMode) {
+    if (viewMode === 'list') {
+        document.querySelector('table').style.display = 'table'
+        document.querySelector('.books-grid').style.display = 'none'
+        document.querySelector('.view-mode-btn-l').classList.add('active')
+        document.querySelector('.view-mode-btn-g').classList.remove('active')
+
+    } else if (viewMode === 'grid') {
+        document.querySelector('table').style.display = 'none'
+        document.querySelector('.books-grid').style.display = 'flex'
+        document.querySelector('.view-mode-btn-g').classList.add('active')
+        document.querySelector('.view-mode-btn-l').classList.remove('active')
+
+    }
 }
 
 function renderPagesBtns() {
@@ -136,7 +187,8 @@ function getCurrQueryParams() {
         maxPrice: +queryStringParams.get('maxprice') || 0,
         minRate: +queryStringParams.get('minrate') || 0,
         onRead: queryStringParams.get('toOpen') || false,
-        id: queryStringParams.get('id') || ''
+        id: queryStringParams.get('id') || '',
+        viewMode: queryStringParams.get('viewMode') || '',
     }
 }
 
@@ -164,7 +216,6 @@ function activatePage(pageToActivate) {
 }
 
 function onReadBook(bookId) {
-    console.log('lolooll:')
     const book = readBook(bookId)
     updateModal({
         toOpen: true,

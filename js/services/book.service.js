@@ -15,15 +15,26 @@ var gModalInfo = {
     isOpen: false,
     id: '',
 }
-var gFilteredRes = null
+var gViewMode = !loadFromStorage('viewMode') ? 'list' : loadFromStorage('viewMode')
+var gFilteredResults = null
 _createBooks()
 console.log('gBooks:', gBooks)
+
+function setBooksViewMode(viewMode) {
+    gViewMode = viewMode
+    saveToStorage('viewMode', viewMode)
+}
+
+function getBooksViewMode() {
+    console.log('gViewMode:', gViewMode)
+    return gViewMode
+}
 
 function getBooksToDisplay() {
     var books = gBooks.filter(book => {
         return book.price <= gFilterBy.maxPrice && book.rate >= gFilterBy.minRate && book.name.toLowerCase().includes(gFilterBy.title.toLowerCase())
     })
-    gFilteredRes = books.length
+    gFilteredResults = books.length
     var startIdx = gPageIdx * PAGE_SIZE
     return books.slice(startIdx, startIdx + PAGE_SIZE)
 }
@@ -33,6 +44,7 @@ function setBooksFilter(filterBy = {}) {
     if (filterBy.maxPrice !== undefined) gFilterBy.maxPrice = filterBy.maxPrice
     if (filterBy.minRate !== undefined) gFilterBy.minRate = filterBy.minRate
     if (filterBy.title !== undefined) gFilterBy.title = filterBy.title
+    if (filterBy.viewMode !== undefined) gViewMode = filterBy.viewMode
     return gFilterBy
 }
 
@@ -125,8 +137,7 @@ function nextPage() {
 }
 
 function getPagesLength() {
-    console.log('gFilteredRes / PAGE_SIZE')
-    return Math.ceil(gFilteredRes / PAGE_SIZE)
+    return Math.ceil(gFilteredResults / PAGE_SIZE)
 }
 
 function prevPage() {

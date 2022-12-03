@@ -11,6 +11,7 @@
     <title>Book Shop</title>
 </head>
 <body onload="onInit()">
+    <!-- <body> -->
     <header>
         <nav>
             <span>Books</span>
@@ -41,6 +42,8 @@
     </div>
     <div class="btns-wrapper">
     <button onclick="onAddBook()" class="add-book-btn">Add Book</button>
+    <button onclick="setViewMode('grid')" class="view-mode-btn-g view-mode-btn">Grid</button>
+    <button onclick="setViewMode('list')" class="view-mode-btn-l view-mode-btn">List</button>
     <div class="pages-btns">
         <button class="prev-btn" onclick="onChangePage('prev')">◀</button>
         <div class="idx-btns">
@@ -64,6 +67,7 @@
         <tbody>
         </tbody>
     </table>
+    <section class="books-grid"></section>
 </section>
 <div class="modal-wrapper">
     <div class="modal">

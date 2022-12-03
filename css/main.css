@@ -296,3 +296,59 @@ outline: none;
 .text-end{
     text-align: end;
 }
+
+.books-grid{
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 3em;
+}
+.grid-item{
+    flex-basis: calc(33% - 2em);
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5em;
+    border: 1px solid #c6ced6;
+    border-radius: .6em;
+    transition: 0.2s background-color;
+}
+.grid-item:hover{
+    background-color: #F6F8FA;
+}
+.grid-item img{
+    width: 100%;
+}
+.book-grid-content{
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    padding: 1em;
+}
+
+.view-mode-btn-g,.view-mode-btn-l{
+    background-color: #F6F8FA;
+    color: #222;
+}
+
+.view-mode-btn-g{
+    margin-left: auto;
+    margin-right: 0.5em;
+}
+.view-mode-btn-l{
+    margin-right: 2em;
+}
+
+.actions-btns-grid{
+margin-top: auto;
+}
+
+.view-mode-btn.active{
+    background-color: #0075FF;
+    color: #F6F8FA;
+}
