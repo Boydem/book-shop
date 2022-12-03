@@ -43,9 +43,11 @@
     <button onclick="onAddBook()" class="add-book-btn">Add Book</button>
     <div class="pages-btns">
         <button class="prev-btn" onclick="onChangePage('prev')">◀</button>
-        <button data-page="0" class="page-idx-btn active" onclick="onChangePage(this.innerText - 1)" >1</button>
+        <div class="idx-btns">
+        <!-- <button data-page="0" class="page-idx-btn active" onclick="onChangePage(this.innerText - 1)" >1</button>
         <button data-page="1" class="page-idx-btn" onclick="onChangePage(this.innerText - 1)">2</button>
-        <button data-page="2" class="page-idx-btn" onclick="onChangePage(this.innerText - 1)">3</button>
+        <button data-page="2" class="page-idx-btn" onclick="onChangePage(this.innerText - 1)">3</button> -->
+    </div>
         <button class="next-btn" onclick="onChangePage('next')">▶</button>
     </div>
 </div>

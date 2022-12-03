@@ -5,9 +5,8 @@ function onInit() {
     renderMaxPriceFilter()
     renderFilterByQueryStringParams()
     renderBooks()
+    renderPagesBtns()
     const currQueryParams = getCurrQueryParams()
-    console.log('currQueryParams.onRead:', currQueryParams.onRead)
-    console.log('currQueryParams.id:', currQueryParams.id)
     if (currQueryParams.onRead) onReadBook(currQueryParams.id)
 }
 
@@ -30,6 +29,25 @@ function renderBooks() {
     )
     const elTableBody = document.querySelector('tbody')
     elTableBody.innerHTML = strHTMLs.join('')
+}
+
+function renderPagesBtns() {
+    var strHTMLs = ``
+    const pagesLength = getPagesLength()
+
+    for (let i = 0; i < pagesLength; i++) {
+        const pageBtn = `<button data-page="${i}" class="page-idx-btn ${i===0?'active':''}" onclick="onChangePage(this.innerText - 1)" >${i+1}</button>`
+        strHTMLs += pageBtn
+    }
+    const elPagesIdxButtonsWrapper = document.querySelector('.idx-btns')
+    elPagesIdxButtonsWrapper.innerHTML = strHTMLs
+}
+
+function renderNewPageBtn(idx) {
+    const elPagesIdxButtonsWrapper = document.querySelector('.idx-btns')
+    const currStrHTML = elPagesIdxButtonsWrapper.innerHTML
+    const newStrHTML = currStrHTML + `<button data-page="${idx}" class="page-idx-btn ${idx===0?'active':''}" onclick="onChangePage(this.innerText - 1)" >${idx+1}</button>`
+    elPagesIdxButtonsWrapper.innerHTML = newStrHTML
 }
 
 function renderMaxPriceFilter() {
@@ -75,6 +93,7 @@ function onSetSortBy(sortBy, elTheadTd) {
     if (+order === 1) elTheadTd.setAttribute('data-order', -1)
     else if (+order === -1) elTheadTd.setAttribute('data-order', 1)
     renderBooks()
+    renderPagesBtns()
 
 }
 
@@ -82,6 +101,7 @@ function onFilterChange(filterBy) {
     renderFilters(filterBy)
     filterBy = setBooksFilter(filterBy)
     renderBooks()
+    renderPagesBtns()
     const queryStringParams = getQueryParamsStr('filters')
     const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
     window.history.pushState({
@@ -92,12 +112,14 @@ function onFilterChange(filterBy) {
 function onAddBook() {
     addBook(prompt('Book Name'), +prompt('Book Price'))
     renderBooks()
+    renderPagesBtns()
     renderMaxPriceFilter()
 }
 
 function onRemoveBook(bookId) {
     removeBook(bookId)
     renderBooks()
+    renderPagesBtns()
     renderMaxPriceFilter()
 }
 

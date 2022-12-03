@@ -91,6 +91,11 @@ ul li:hover{
 }
 .pages-btns{
     /* float: right; */
+    display: flex;
+    gap: 5px;
+}
+.idx-btns {
+    display: inline-block;
 }
 .page-idx-btn{
     background-color: #EDF0F5;

@@ -15,6 +15,7 @@ var gModalInfo = {
     isOpen: false,
     id: '',
 }
+var gFilteredRes = null
 _createBooks()
 console.log('gBooks:', gBooks)
 
@@ -22,12 +23,13 @@ function getBooksToDisplay() {
     var books = gBooks.filter(book => {
         return book.price <= gFilterBy.maxPrice && book.rate >= gFilterBy.minRate && book.name.toLowerCase().includes(gFilterBy.title.toLowerCase())
     })
-
+    gFilteredRes = books.length
     var startIdx = gPageIdx * PAGE_SIZE
     return books.slice(startIdx, startIdx + PAGE_SIZE)
 }
 
 function setBooksFilter(filterBy = {}) {
+    gPageIdx = 0
     if (filterBy.maxPrice !== undefined) gFilterBy.maxPrice = filterBy.maxPrice
     if (filterBy.minRate !== undefined) gFilterBy.minRate = filterBy.minRate
     if (filterBy.title !== undefined) gFilterBy.title = filterBy.title
@@ -71,6 +73,7 @@ function updateRate(bookId, newRate) {
 }
 
 function sortBooks(sortBy = {}) {
+    gPageIdx = 0
     if (sortBy.title !== undefined) gBooks.sort((book1, book2) => {
         return book1.name.localeCompare(book2.name) * sortBy.title
     })
@@ -121,11 +124,15 @@ function nextPage() {
     return gPageIdx
 }
 
+function getPagesLength() {
+    console.log('gFilteredRes / PAGE_SIZE')
+    return Math.ceil(gFilteredRes / PAGE_SIZE)
+}
 
 function prevPage() {
     gPageIdx--
     if (gPageIdx * PAGE_SIZE < 0) {
-        gPageIdx = Math.floor(gBooks.length / PAGE_SIZE)
+        gPageIdx = Math.floor(gBooks.length / PAGE_SIZE) - 1
     }
     return gPageIdx
 }
