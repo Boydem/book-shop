@@ -30,11 +30,11 @@ function getBooksViewMode() {
 }
 
 function getBooksToDisplay() {
-    var books = gBooks.filter(book => {
+    const books = gBooks.filter(book => {
         return book.price <= gFilterBy.maxPrice && book.rate >= gFilterBy.minRate && book.name.toLowerCase().includes(gFilterBy.title.toLowerCase())
     })
     gFilteredResults = books.length
-    var startIdx = gPageIdx * PAGE_SIZE
+    const startIdx = gPageIdx * PAGE_SIZE
     return books.slice(startIdx, startIdx + PAGE_SIZE)
 }
 
@@ -142,7 +142,7 @@ function getPagesLength() {
 
 function prevPage() {
     gPageIdx--
-    if (gPageIdx * PAGE_SIZE < 0) {
+    if (gPageIdx * PAGE_SIZE <= 0) {
         gPageIdx = Math.floor(gBooks.length / PAGE_SIZE) - 1
     }
     return gPageIdx

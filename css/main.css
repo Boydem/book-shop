@@ -73,7 +73,9 @@ ul li:hover{
     position: relative;
     min-height: 90vh;
     background: #fff;
-    padding: 2.5em 5em;
+    max-width: 1330px;
+    margin: auto;
+    padding: 2.5em 0;
 }
 .books-section h1{
     /* float: left; */
