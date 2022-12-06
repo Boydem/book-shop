@@ -12,12 +12,12 @@
 
 /* DEFAULT STYLES */
 body{
-    
-font-family: 'Merriweather Sans', sans-serif;
+    font-family: 'Merriweather Sans', sans-serif;
     letter-spacing: -.05em;
     font-size: 16px;
     overflow-x: hidden;
     color: var(--black);
+    background-color: var(--white);
 }
 body.rtl{
     direction: rtl;
@@ -172,6 +172,17 @@ tbody td{
         max-width: 90px;
     }
 }
+@media screen and (max-width:400px) {
+    .book-img{
+        max-width: 50px;
+    }
+    tbody td {
+        padding: 0.25em;
+    }
+    .books-section {
+        padding: 0.5em;
+    }
+}
 .book-price{
     text-align: center;
     font-weight: 800;
@@ -223,7 +234,7 @@ table tr{
     .books-section{
         padding: 2.5em;
     }
-        nav{
+    nav{
         padding: 0.5em 1em;
     }
 }

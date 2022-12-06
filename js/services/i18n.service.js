@@ -2,10 +2,6 @@
 
 
 const gTrans = {
-    logo: {
-        en: 'KaBook',
-        he: 'קבוק'
-    },
     'page-title': {
         en: 'Books',
         he: `ספרים`
@@ -33,14 +29,6 @@ const gTrans = {
     'add-book': {
         en: 'Add Book',
         he: 'ספר חדש'
-    },
-    'grid': {
-        en: 'Grid',
-        he: 'גריד'
-    },
-    'list': {
-        en: 'List',
-        he: 'רשימה'
     },
     id: {
         en: 'ID',
