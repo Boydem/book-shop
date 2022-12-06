@@ -7,8 +7,12 @@ const gTrans = {
         he: 'קבוק'
     },
     'page-title': {
-        en: 'Books - stock management',
-        he: ` ספרים  – ניהול מלאי`
+        en: 'Books',
+        he: `ספרים`
+    },
+    'page-subtitle': {
+        en: 'Stock Management:',
+        he: `ניהול מלאי:`
     },
     filters: {
         en: 'Filters',

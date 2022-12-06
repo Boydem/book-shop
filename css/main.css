@@ -1,7 +1,8 @@
 
 /* DEFAULT STYLES */
 body{
-    font-family: 'Source Sans Pro', arial;
+    
+font-family: 'Merriweather Sans', sans-serif;
     letter-spacing: -.05em;
     font-size: 16px;
     overflow-x: hidden;
@@ -17,7 +18,8 @@ body.rtl{
     box-sizing: border-box;
 }
 h1,h2,h3,h4,h5,h6{
-    font-family: 'playfair display',arial;
+    /* font-family: 'playfair display',arial; */
+    font-family: 'Merriweather', serif;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -88,11 +90,19 @@ ul li:hover{
     margin: auto;
     padding: 2.5em 0;
 }
-.books-section h1{
+.page-title{
     /* float: left; */
-    margin-bottom: .2em;
+    margin-bottom: -.2em;
     font-size: 3em;
     font-weight: 700;
+}
+.page-subtitle{
+    /* float: left; */
+    margin-bottom: .2em;
+    font-style: italic;
+    /* font-size: 3em; */
+    font-weight: 700;
+    color: #999;
 }
 .add-book-btn{
     /* float: left; */
@@ -155,7 +165,8 @@ tbody td{
     width: 100px;
 }
 .book-title{
-    font-family: 'playfair display',arial;
+    /* font-family: 'playfair display',arial; */
+    font-family: 'Merriweather', serif;
     font-size: 1.25em;
     font-weight: 600;
     width: 300px;
@@ -243,7 +254,8 @@ button[data-rate="minus"]{
 }
 
 .book-filters{
-    font-family: 'playfair display',arial;
+    /* font-family: 'playfair display',arial; */
+    font-family: 'Merriweather', serif;
     font-weight: 500;
     display: flex;
     justify-content: center;
@@ -277,7 +289,8 @@ input[type="range"] {
     width: 100%;
 }
 .book-filters input[type="text"]{
-    font-family: 'playfair display',arial;
+    /* font-family: 'playfair display',arial; */
+    font-family: 'Merriweather', serif;
     font-weight: 500;
     font-size: 1em;
 text-align: center;

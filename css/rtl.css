@@ -1,3 +1,7 @@
+body.rtl *:not(i){
+    font-family: 'Rubik', sans-serif!important;
+}
+
 body.rtl .view-mode-btn-l,
 body.rtl nav span{
     margin-right: unset;
@@ -14,4 +18,14 @@ body.rtl .next-btn i{
 body.rtl .book-filters input:after{
     right:unset;
     left: 0;
+}
+
+body.rtl .modal-wrapper{
+    transition: 0.3s left ease-out;
+    right: unset;
+    left: -50%
+}
+body.rtl .modal-wrapper.open{
+    right: unset;
+    left: 0%
 }
