@@ -1,7 +1,7 @@
 
 /* DEFAULT STYLES */
 body{
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Source Sans Pro', arial;
     letter-spacing: -.05em;
     font-size: 16px;
     overflow-x: hidden;
@@ -9,6 +9,7 @@ body{
 }
 body.rtl{
     direction: rtl;
+    font-family: 'Arial';
 }
 *{
     margin: 0;
@@ -16,7 +17,7 @@ body.rtl{
     box-sizing: border-box;
 }
 h1,h2,h3,h4,h5,h6{
-    font-family: 'playfair display';
+    font-family: 'playfair display',arial;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -154,7 +155,7 @@ tbody td{
     width: 100px;
 }
 .book-title{
-    font-family: 'playfair display';
+    font-family: 'playfair display',arial;
     font-size: 1.25em;
     font-weight: 600;
     width: 300px;
@@ -242,7 +243,7 @@ button[data-rate="minus"]{
 }
 
 .book-filters{
-    font-family: 'playfair display';
+    font-family: 'playfair display',arial;
     font-weight: 500;
     display: flex;
     justify-content: center;
@@ -276,7 +277,7 @@ input[type="range"] {
     width: 100%;
 }
 .book-filters input[type="text"]{
-    font-family: 'playfair display';
+    font-family: 'playfair display',arial;
     font-weight: 500;
     font-size: 1em;
 text-align: center;
@@ -289,9 +290,9 @@ padding: 0.5em;
 outline: none;
 
 }
-.book-filters label input{position: relative;}
+.book-filters input{position: relative;}
 
-.book-filters label input:after{
+.book-filters input:after{
     content: attr(data-content);
     position: absolute;
     top: -150%;

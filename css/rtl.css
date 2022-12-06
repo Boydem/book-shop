@@ -1,0 +1,17 @@
+body.rtl .view-mode-btn-l,
+body.rtl nav span{
+    margin-right: unset;
+    margin-left:auto;
+}
+body.rtl .view-mode-btn-g{
+    margin-left: unset;
+    margin-right:auto;
+}
+body.rtl .prev-btn i,
+body.rtl .next-btn i{
+    transform: rotate(180deg);
+}
+body.rtl .book-filters input:after{
+    right:unset;
+    left: 0;
+}

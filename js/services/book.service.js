@@ -142,7 +142,7 @@ function getPagesLength() {
 
 function prevPage() {
     gPageIdx--
-    if (gPageIdx * PAGE_SIZE <= 0) {
+    if (gPageIdx * PAGE_SIZE < 0) {
         gPageIdx = Math.floor(gBooks.length / PAGE_SIZE) - 1
     }
     return gPageIdx
