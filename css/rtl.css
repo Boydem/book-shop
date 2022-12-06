@@ -23,7 +23,7 @@ body.rtl .book-filters input:after{
 body.rtl .modal-wrapper{
     transition: 0.3s left ease-out;
     right: unset;
-    left: -50%
+    left: -100%
 }
 body.rtl .modal-wrapper.open{
     right: unset;
