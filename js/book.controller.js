@@ -2,7 +2,7 @@
 
 
 function onInit() {
-
+    introPageAnimation()
     renderMaxPriceFilter()
     renderFilterByQueryStringParams()
     renderBooks()
@@ -13,9 +13,12 @@ function onInit() {
 function onSetLang(elLang) {
     const lang = elLang.dataset.lang
     setLang(lang)
-    doTrans()
-    if (lang === 'he') document.body.classList.add('rtl')
-    else document.body.classList.remove('rtl')
+    loadPageAnimation()
+    setTimeout(() => {
+        doTrans()
+        if (lang === 'he') document.body.classList.add('rtl')
+        else document.body.classList.remove('rtl')
+    }, 500)
     updateQueryStringParams('lang')
 }
 

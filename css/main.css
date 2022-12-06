@@ -384,3 +384,28 @@ margin-top: auto;
     color: #F6F8FA;
 }
 
+.loader-overlay,.loader-intro{
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;   
+    transition: .35s all ease-in;
+}
+.loader-overlay{
+    transition: 0.25s all;
+    opacity: 0;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}
+.alpha-in{
+    opacity: 1;
+}
+.alpha-out{
+    opacity: 0;
+}
