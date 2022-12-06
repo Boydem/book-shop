@@ -111,3 +111,7 @@ function setLang(lang) {
     if (lang === gCurrLang) return
     gCurrLang = lang
 }
+
+function getCurrLang() {
+    return gCurrLang
+}

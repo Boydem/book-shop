@@ -139,6 +139,10 @@ function renderFilters(filterBy) {
     }
 }
 
+function setLangToQueryParams() {
+
+}
+
 function renderFilterByQueryStringParams() {
     const filterBy = getCurrQueryParams()
     if (!filterBy.maxPrice && !filterBy.minRate && !filterBy.title) return
@@ -197,7 +201,8 @@ function getCurrQueryParams() {
         maxPrice: +queryStringParams.get('maxprice') || 0,
         minRate: +queryStringParams.get('minrate') || 0,
         onRead: queryStringParams.get('toOpen') || false,
-        id: queryStringParams.get('id') || ''
+        id: queryStringParams.get('id') || '',
+        lang: queryStringParams.get('lang') || 'en'
     }
 }
 
