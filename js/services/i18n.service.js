@@ -108,7 +108,6 @@ function doTrans() {
 }
 
 function setLang(lang) {
-    if (lang === gCurrLang) return
     gCurrLang = lang
 }
 

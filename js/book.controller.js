@@ -2,14 +2,12 @@
 
 
 function onInit() {
-    setLangToQueryParams()
+
     renderMaxPriceFilter()
     renderFilterByQueryStringParams()
     renderBooks()
     renderPagesBtns()
-    doTrans()
-    const currQueryParams = getCurrQueryParams()
-    if (currQueryParams.onRead) onReadBook(currQueryParams.id)
+    initQuerryParams()
 }
 
 function onSetLang(elLang) {
@@ -18,6 +16,7 @@ function onSetLang(elLang) {
     doTrans()
     if (lang === 'he') document.body.classList.add('rtl')
     else document.body.classList.remove('rtl')
+    updateQueryStringParams('lang')
 }
 
 function setViewMode(viewMode) {
@@ -140,13 +139,6 @@ function renderFilters(filterBy) {
     }
 }
 
-function setLangToQueryParams() {
-    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + getQueryParamsStr('lang')
-    window.history.pushState({
-        path: newUrl
-    }, '', newUrl)
-}
-
 function renderFilterByQueryStringParams() {
     const filterBy = getCurrQueryParams()
     if (!filterBy.maxPrice && !filterBy.minRate && !filterBy.title) return
@@ -171,7 +163,11 @@ function onFilterChange(filterBy) {
     filterBy = setBooksFilter(filterBy)
     renderBooks()
     renderPagesBtns()
-    const queryStringParams = getQueryParamsStr('filters')
+    updateQueryStringParams('filters')
+}
+
+function updateQueryStringParams(caller) {
+    const queryStringParams = getQueryParamsStr(caller)
     const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
     window.history.pushState({
         path: newUrl
@@ -241,11 +237,7 @@ function onReadBook(bookId) {
     })
     renderModal(book)
     document.querySelector('.modal-wrapper').classList.add('open')
-    const queryStringParams = getQueryParamsStr('modal')
-    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + queryStringParams
-    window.history.pushState({
-        path: newUrl
-    }, '', newUrl)
+    updateQueryStringParams('modal')
 
 }
 
@@ -253,11 +245,7 @@ function onCloseModal() {
     updateModal()
     console.log('gModalInfo:', gModalInfo)
     document.querySelector('.modal-wrapper').classList.remove('open')
-    const filterQueryParamsStr = getQueryParamsStr('filters')
-    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + filterQueryParamsStr
-    window.history.pushState({
-        path: newUrl
-    }, '', newUrl)
+    updateQueryStringParams('modal')
 }
 
 function onUpdateRate(el, bookId) {
@@ -285,4 +273,17 @@ function renderModal(book) {
     <button data-rate="plus" onclick="onUpdateRate(this,'${book.id}')" class="plus-minus">+</button>
     </label>
     `
+}
+
+function initQuerryParams() {
+    const currQueryParams = getCurrQueryParams()
+    setLang(currQueryParams.lang)
+    const currLang = getCurrLang()
+    doTrans(currLang)
+    if (currLang === 'he') document.body.classList.add('rtl')
+    else document.body.classList.remove('rtl')
+    if (currQueryParams.onRead) {
+        console.log('rgerh:')
+        onReadBook(currQueryParams.id)
+    }
 }

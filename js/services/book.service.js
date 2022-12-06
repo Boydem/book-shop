@@ -107,7 +107,7 @@ function getQueryParamsStr(caller) {
     if (caller === 'filters' && !gModalInfo.isOpen) str += `&title=${gFilterBy.title}&maxprice=${gFilterBy.maxPrice}&minrate=${gFilterBy.minRate}`
     else if (caller === 'filters' && gModalInfo.isOpen) str += `&title=${gFilterBy.title}&maxprice=${gFilterBy.maxPrice}&minrate=${gFilterBy.minRate}&toOpen=${gModalInfo.isOpen}&id=${gModalInfo.id}`
     else if (caller === 'modal' && location.search.toLowerCase().includes('maxprice')) str += `&title=${gFilterBy.title}&maxprice=${gFilterBy.maxPrice}&minrate=${gFilterBy.minRate}&toOpen=${gModalInfo.isOpen}&id=${gModalInfo.id}`
-    else if (caller === 'modal') str += `?toOpen=${gModalInfo.isOpen}&id=${gModalInfo.id}`
+    else if (caller === 'modal') str += `&toOpen=${gModalInfo.isOpen}&id=${gModalInfo.id}`
     return str
 }
 
