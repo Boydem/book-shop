@@ -2,6 +2,7 @@
 
 
 function onInit() {
+    setLangToQueryParams()
     renderMaxPriceFilter()
     renderFilterByQueryStringParams()
     renderBooks()
@@ -140,7 +141,10 @@ function renderFilters(filterBy) {
 }
 
 function setLangToQueryParams() {
-
+    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + getQueryParamsStr('lang')
+    window.history.pushState({
+        path: newUrl
+    }, '', newUrl)
 }
 
 function renderFilterByQueryStringParams() {

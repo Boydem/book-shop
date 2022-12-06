@@ -9,7 +9,7 @@ var gFilterBy = {
     maxPrice: 0,
     minPrice: 0,
     minRate: 0,
-    title: '',
+    title: ''
 }
 var gModalInfo = {
     isOpen: false,
@@ -101,11 +101,14 @@ function updateModal(modalInfo = {}) {
 }
 
 function getQueryParamsStr(caller) {
-    const currUrlSearch = location.search
-    if (caller === 'filters' && currUrlSearch === '' || caller === 'filters' && !gModalInfo.isOpen) return `?title=${gFilterBy.title}&maxprice=${gFilterBy.maxPrice}&minrate=${gFilterBy.minRate}`
-    else if (caller === 'filters' && gModalInfo.isOpen) return `?toOpen=${gModalInfo.isOpen}&id=${gModalInfo.id}&title=${gFilterBy.title}&maxprice=${gFilterBy.maxPrice}&minrate=${gFilterBy.minRate}`
-    else if (caller === 'modal' && currUrlSearch.toLowerCase().includes('maxprice')) return `?title=${gFilterBy.title}&maxprice=${gFilterBy.maxPrice}&minrate=${gFilterBy.minRate}&toOpen=${gModalInfo.isOpen}&id=${gModalInfo.id}`
-    else if (caller === 'modal') return `?toOpen=${gModalInfo.isOpen}&id=${gModalInfo.id}`
+    const currLang = getCurrLang()
+    var str = `?lang=${currLang}`
+    if (caller === 'lang') return str
+    if (caller === 'filters' && !gModalInfo.isOpen) str += `&title=${gFilterBy.title}&maxprice=${gFilterBy.maxPrice}&minrate=${gFilterBy.minRate}`
+    else if (caller === 'filters' && gModalInfo.isOpen) str += `&title=${gFilterBy.title}&maxprice=${gFilterBy.maxPrice}&minrate=${gFilterBy.minRate}&toOpen=${gModalInfo.isOpen}&id=${gModalInfo.id}`
+    else if (caller === 'modal' && location.search.toLowerCase().includes('maxprice')) str += `&title=${gFilterBy.title}&maxprice=${gFilterBy.maxPrice}&minrate=${gFilterBy.minRate}&toOpen=${gModalInfo.isOpen}&id=${gModalInfo.id}`
+    else if (caller === 'modal') str += `?toOpen=${gModalInfo.isOpen}&id=${gModalInfo.id}`
+    return str
 }
 
 function updateFiltersPrices(books) {
