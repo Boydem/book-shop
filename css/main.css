@@ -223,6 +223,9 @@ table tr{
     .books-section{
         padding: 2.5em;
     }
+        nav{
+        padding: 0.5em 1em;
+    }
 }
 @media screen and (max-width:900px){
     .books-section{
