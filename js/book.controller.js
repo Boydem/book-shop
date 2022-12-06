@@ -6,8 +6,17 @@ function onInit() {
     renderFilterByQueryStringParams()
     renderBooks()
     renderPagesBtns()
+    doTrans()
     const currQueryParams = getCurrQueryParams()
     if (currQueryParams.onRead) onReadBook(currQueryParams.id)
+}
+
+function onSetLang(elLang) {
+    const lang = elLang.dataset.lang
+    setLang(lang)
+    doTrans()
+    if (lang === 'he') document.body.classList.add('rtl')
+    else document.body.classList.remove('rtl')
 }
 
 function setViewMode(viewMode) {
@@ -26,24 +35,24 @@ function getStrHTML(viewMode = 'list', book) {
         <td class="book-title">${book.name}</td>
         <td class="book-price">$${book.price}</td>
         <td class="book-actions">
-            <button onclick="onReadBook('${book.id}')" class="read-btn btn">Read</button>
-            <button onclick="onUpdateBook('${book.id}')" class="update-btn btn">Update</button>
-            <button onclick="onRemoveBook('${book.id}')" class="delete-btn btn">Delete</button>
-        </td>
+        <button onclick="onReadBook('${book.id}')" class="read-btn btn"><span data-trans="read"></span> <i class="fa-solid fa-book-open"></i></button>
+        <button onclick="onUpdateBook('${book.id}')" class="update-btn btn"><span data-trans="update"></span> <i class="fa-solid fa-pen-to-square"></i></button>
+        <button onclick="onRemoveBook('${book.id}')" class="delete-btn btn"><span data-trans="delete"></span> <i class="fa-solid fa-trash-can"></i></button>
+    </td>
     </tr>`
     } else {
         return `<div class="grid-item">
+        <div class="book-grid-content">
         <div class="book-img-td">
             <img src="imgs/${book.imgUrl}" class="book-img" alt="">
         </div>
-        <div class="book-grid-content">
         <p>ID: ${book.id}</p>
         <h3>Title: ${book.name}</h3>
         <p>Price: $${book.price}</p>
         <div class="actions-btns-grid">
-            <button onclick="onReadBook('${book.id}')" class="read-btn btn">Read</button>
-            <button onclick="onUpdateBook('${book.id}')" class="update-btn btn">Update</button>
-            <button onclick="onRemoveBook('${book.id}')" class="delete-btn btn">Delete</button>
+            <button onclick="onReadBook('${book.id}')" class="read-btn btn"><span data-trans="read"></span> <i class="fa-solid fa-book-open"></i></button>
+            <button onclick="onUpdateBook('${book.id}')" class="update-btn btn"><span data-trans="update"></span> <i class="fa-solid fa-pen-to-square"></i></button>
+            <button onclick="onRemoveBook('${book.id}')" class="delete-btn btn"><span data-trans="delete"></span> <i class="fa-solid fa-trash-can"></i></button>
         </div>
         </div>
     </div>`
@@ -64,6 +73,7 @@ function renderBooks() {
         toggleTableGrid('grid')
     }
     elBooksContainer.innerHTML = strHTMLs.join('')
+    doTrans()
 }
 
 function toggleTableGrid(viewMode) {
@@ -132,8 +142,8 @@ function renderFilters(filterBy) {
 function renderFilterByQueryStringParams() {
     const filterBy = getCurrQueryParams()
     if (!filterBy.maxPrice && !filterBy.minRate && !filterBy.title) return
-    renderFilters(filterBy)
     setBooksFilter(filterBy)
+    renderFilters(filterBy)
 }
 
 function onSetSortBy(sortBy, elTheadTd) {
@@ -187,8 +197,7 @@ function getCurrQueryParams() {
         maxPrice: +queryStringParams.get('maxprice') || 0,
         minRate: +queryStringParams.get('minrate') || 0,
         onRead: queryStringParams.get('toOpen') || false,
-        id: queryStringParams.get('id') || '',
-        viewMode: queryStringParams.get('viewMode') || '',
+        id: queryStringParams.get('id') || ''
     }
 }
 

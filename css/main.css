@@ -1,9 +1,14 @@
+
+/* DEFAULT STYLES */
 body{
     font-family: 'Source Sans Pro', sans-serif;
     letter-spacing: -.05em;
     font-size: 16px;
     overflow-x: hidden;
     color: #222;
+}
+body.rtl{
+    direction: rtl;
 }
 *{
     margin: 0;
@@ -36,7 +41,7 @@ table{
     border-collapse: collapse;
     border-spacing: 2px;
 }
-
+/* HEADER */
 header{
     height: 10vh;
     background-color: rgb(246, 248, 250);
@@ -69,6 +74,11 @@ ul li:hover{
     color: #669bf5;
     list-style: none;
 }
+.flag{
+    width: 30px;
+}
+
+/* BOOKS SECTION */
 .books-section{
     position: relative;
     min-height: 90vh;
@@ -174,6 +184,14 @@ table tr{
     background-color: #df1919;
 }
 
+/* Books media */
+
+@media screen and (max-width:1335px){
+    .books-section{
+        padding: 2.5em;
+    }
+}
+
 /* MODAL */
 .modal-wrapper{
     position: fixed;
@@ -240,9 +258,9 @@ button[data-rate="minus"]{
 background-color: #EDF0F5;
 padding: 0.25em 0.5em;
 }
-.book-filters label input{
-    margin-left: .2em;
-    vertical-align: middle;
+.book-filters input{
+    /* margin-left: .2em; */
+    /* vertical-align: middle; */
 }
 .filters-wrapper{
     display: flex;
@@ -329,7 +347,7 @@ outline: none;
     flex-basis: 100%;
     display: flex;
     flex-direction: column;
-    gap: .5em;
+    gap: .25em;
     padding: 1em;
 }
 
@@ -343,7 +361,7 @@ outline: none;
     margin-right: 0.5em;
 }
 .view-mode-btn-l{
-    margin-right: 2em;
+    margin-right: auto;
 }
 
 .actions-btns-grid{
@@ -354,3 +372,4 @@ margin-top: auto;
     background-color: #0075FF;
     color: #F6F8FA;
 }
+
