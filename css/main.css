@@ -162,7 +162,7 @@ tbody td{
 }
 .book-price{
     text-align: center;
-    font-weight: 900;
+    font-weight: 800;
     font-size: 1.25em;
     width: 100px;
 }
@@ -173,8 +173,15 @@ tbody td{
     font-weight: 600;
     width: 300px;
 }
-.book-id{
-    width: 100px;
+@media screen and (max-width:800px) {
+    .book-title{
+        font-size: 1em;
+    }
+    .book-price{
+        font-size: 1em;
+        font-size: 1em;
+        font-weight:800;
+    }
 }
 .book-actions{
     text-align: end;
@@ -369,7 +376,6 @@ outline: none;
     flex-direction: row;
     align-items: center;
     gap: .5em;
-    /* border: 1px solid #c6ced6; */
     border-radius: .6em;
     transition: 0.2s all;
     box-shadow: 0px 10px 30px -10px lightgray;
